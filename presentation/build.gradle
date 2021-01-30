@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlinx-serialization'
+}
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    ndkVersion "21.3.6528147"
+
+    defaultConfig {
+        applicationId "com.mvi.todo.mvi_todo_app"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSDKVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation project(":data")
+    implementation project(":domain")
+
+    implementation kotlinStdLib
+    implementation appCompat
+    implementation coreKtx
+
+    //design libs
+    implementation material
+    implementation constraint
+
+    //di
+
+
+    //arhitecture components
+    implementation lifecycleExtensions
+    implementation lifecycleKtxViewModel
+    implementation lifecycleKtxRuntime
+    implementation lifecycleKtxLivedata
+
+    //coroutines
+    implementation coroutinesCore
+    implementation coroutinesAndroid
+
+    implementation cicerone
+    implementation roomRuntime
+    kapt roomCompiler
+    implementation room
+}
